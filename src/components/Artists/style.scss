@@ -1,5 +1,16 @@
 @import '../../assets/variables.scss';
 
+.artist {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0.7rem;
+  grid-row-gap: 0.4rem;
+  position: relative;
+  background-color: $gray-middle-color;
+  padding-bottom: 2rem;
+}
+
 .artist-main  {
   display: flex;
   background-repeat: no-repeat;

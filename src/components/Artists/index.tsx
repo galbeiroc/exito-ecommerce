@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { ArtistServices } from '../../services/index';
+import { ItemArtist } from './ItemArtist';
 import './style.scss';
 
-interface iArtist {
+export interface allArtist {
   id: number;
   name: string;
   image: string;
+  genres: string[];
+  popularity: string;
+  spotify_url: string;
+  spotify_id: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
-interface iProps {
-  artist: iArtist;
-}
+export const Artist: React.FC = () => {
+  const [artists, setArtists] = useState<allArtist[]>([]);
 
-export const Artist: React.FC<iProps> = ({ artist: { name, id, image } }) => {
+  const services = new ArtistServices();
+
+  const getArtist = () => {
+    services
+      .getAllArtists()
+      .then((res: any) => {
+        console.log('res.data artists', res.data);
+        setArtists(res.data);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getArtist();
+    console.log('artists', artists);
+  }, []);
+
   return (
-    <div
-      className={'artist-main'}
-      style={{
-        backgroundImage:
-          'linear-gradient( to bottom,rgba(34, 41, 30, 0),rgba(34, 32, 41, 0.8)),     url(' +
-          image +
-          ')'
-      }}
-    >
-      <h1 className={'artist-heading'}>{name}</h1>
+    <div className={'row artist'}>
+      {artists.map(e => {
+        return <ItemArtist key={e.id} artist={e} />;
+      })}
     </div>
   );
 };
-
-//url(' + image + ')

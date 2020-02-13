@@ -1,0 +1,29 @@
+@import '../../assets/variables.scss';
+
+.main-title {
+    display: flex;
+    position: relative;
+    padding: 0.5rem;
+    border-bottom: 0.3rem $black-color solid;
+    justify-content: space-between;
+  }
+  
+  .main-heading {
+    color: $white-color;
+    font-family: $titles-font;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    margin: 0 0.6rem;
+  }
+  
+  .main-subheading {
+    color: $white-color;
+    font-family: $subtitles-font;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    justify-items: center;
+    margin: 0.7rem 0;
+    position: relative;
+    letter-spacing: 0.1rem;
+  }

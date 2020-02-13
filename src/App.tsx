@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ArtistServices } from './services/index';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import {Navbar} from './components/Navbar'
 import { Artist } from './components/Artists';
+import { Album } from './components/Album';
+
 import './App.scss';
 
 export interface allArtist {
@@ -13,42 +17,20 @@ export interface allArtist {
   spotify_id: string;
   created_at: Date;
   updated_at: Date;
+  handleChange: (id: number) => void;
 }
 
 const App: React.FC = () => {
-  const [artists, setArtists] = useState<allArtist[]>([]);
-
-  const services = new ArtistServices();
-
-  const getArtist = () => {
-    services
-      .getAllArtists()
-      .then((res: any) => {
-        console.log('res.data', res.data);
-        setArtists(res.data);
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    getArtist();
-    console.log('tt', artists);
-  }, []);
-
   return (
-    <div className={'container'}>
-      <div className={'main-title'}>
-      <h1 className={'main-heading'}>éxito play music </h1>
-      <h5 className={'main-subheading'}>lista de artistas</h5>
+    <BrowserRouter>
+      <div className={'container'}>
+        <Navbar />
+        <Switch>
+          <Route exact path={'/'} component={Artist}/>
+          <Route exact path={'/:id/albums'} component={Album}/>
+        </Switch>
       </div>
-      <div className={'row artist'}>
-        {artists.map(e => {
-          return <Artist key={e.id} artist={e} />;
-        })}
-      </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
