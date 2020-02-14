@@ -1,11 +1,11 @@
 @import './assets/variables.scss';
 
-.container {
+.container-fluid {
   text-align: left;
   font-size: 1rem;
-  margin: 0.8rem 0;
   background-color: $gray-soft-color;
-  padding-bottom: 4rem;
+  padding: 0 0 4rem 0;
+  border-top: 0.3rem $black-color solid;
 }
 
 

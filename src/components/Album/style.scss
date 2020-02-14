@@ -1,5 +1,10 @@
 @import '../../assets/variables.scss';
 
+.content-album-art{
+  width: 100%;
+  border-top: 0.3rem $black-color solid;
+  margin-bottom: 0.3rem;
+}
 .album-content {
   background-color: $gray-soft-color;
   width: 800px;

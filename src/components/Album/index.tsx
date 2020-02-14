@@ -69,7 +69,7 @@ export const Album: React.FC<albumsProps> = ({
 
   const { name, image, popularity } = artists;
   return (
-    <div>
+    <div className={'content-album-art'}>
       <div className={'artist-content'}>
         <button className={'btn-back'} onClick={() => history.goBack()}>
           <i className="fas fa-angle-left"></i>atrás

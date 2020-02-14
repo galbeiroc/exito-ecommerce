@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
 import {Navbar} from './components/Navbar'
 import { Artist } from './components/Artists';
 import { Album } from './components/Album';
 import {Song} from './components/Songs'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.scss';
 
@@ -24,7 +24,7 @@ export interface allArtist {
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className={'container'}>
+      <div className={'container-fluid'}>
         <Navbar />
         <Switch>
           <Route exact path={'/'} component={Artist}/>

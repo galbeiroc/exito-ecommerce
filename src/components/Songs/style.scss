@@ -1,1 +1,12 @@
 @import '../../assets/variables.scss';
+
+.content-song {
+  background-color: #a09e9e;
+  width: 800px;
+  margin: auto;
+}
+
+.selected-row {
+  color: $white-color;
+  cursor: pointer;
+}
