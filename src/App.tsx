@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import {Navbar} from './components/Navbar'
 import { Artist } from './components/Artists';
 import { Album } from './components/Album';
+import {Song} from './components/Songs'
 
 import './App.scss';
 
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path={'/'} component={Artist}/>
           <Route exact path={'/:id/albums'} component={Album}/>
+          <Route exact path={'/:id/songs'} component={Song}/>
         </Switch>
       </div>
     </BrowserRouter>

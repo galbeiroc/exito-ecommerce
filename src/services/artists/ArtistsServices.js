@@ -7,6 +7,10 @@ export default class ArtistServices extends Services {
   }
 
   getArtistAlbums(data) {
-    return this.get(ArtistServiceDefinitions.getArtistAlbum(data))
+    return this.get(ArtistServiceDefinitions.getArtistAlbum(data));
+  }
+
+  getAlbumsSongs(data) {
+    return this.get(ArtistServiceDefinitions.getAlbumSong(data));
   }
 }

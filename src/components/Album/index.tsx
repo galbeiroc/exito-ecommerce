@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ItemAlbum } from './ItemAlbum';
 import { ArtistServices } from '../../services/index';
-import { RouteComponentProps, RouteProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import './style.scss';
 
-interface RouterProps {
-  id: string;
-}
-
-interface albumsProps extends RouteComponentProps<RouterProps> {}
+interface albumsProps extends RouteComponentProps<{ id: string }> {}
 
 interface IObjectAlbum {
   id: number;
@@ -21,13 +17,6 @@ interface IObjectAlbum {
 interface IProps {
   artist: number;
   albums: Array<IObjectAlbum>;
-}
-
-interface allArtist {
-  id: number;
-  name: string;
-  image: string;
-  popularity: number;
 }
 
 interface iAlbum {
@@ -44,9 +33,9 @@ export const Album: React.FC<albumsProps> = ({
     params: { id }
   }
 }) => {
+  let getArtist: any = history.location.state;
   const [infoArtist, setInfoArtist] = useState<IProps[]>([]);
-  const [nameArtist, setNameArtist] = useState({});
-  const [artists, setArtists] = useState<allArtist[]>([]);
+  const [artists, setArtists] = useState<any>(getArtist);
   const services = new ArtistServices();
 
   const getInfoArtistAlbum = (): void => {
@@ -61,26 +50,9 @@ export const Album: React.FC<albumsProps> = ({
       });
   };
 
-  const getArtist = (): void => {
-    services
-      .getAllArtists()
-      .then((res: any) => {
-        setArtists(res.data);
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
-  };
-
   useEffect(() => {
     getInfoArtistAlbum();
-    getArtist();
   }, []);
-
-  const filterArtist = artists.find(e => {
-    const artist: number = parseInt(id);
-    return e.id === artist;
-  });
 
   const filterAlbumArtist = infoArtist.filter(e => {
     const artist: number = parseInt(id);
@@ -90,23 +62,24 @@ export const Album: React.FC<albumsProps> = ({
   const mapAlbums = filterAlbumArtist.map(elem =>
     elem.albums.map(alb => (
       <ul key={alb.id} className={'album-items'}>
-        <ItemAlbum album={alb} />
+        <ItemAlbum album={alb} artist={artists} />
       </ul>
     ))
   );
 
+  const { name, image, popularity } = artists;
   return (
     <div>
       <div className={'artist-content'}>
         <button className={'btn-back'} onClick={() => history.goBack()}>
           <i className="fas fa-angle-left"></i>atrás
         </button>
-        <img src={filterArtist?.image} className={'artist-img'} />
+        <img src={image} className={'artist-img'} />
         <h6 className={'artist-name'}>
-          {filterArtist?.name}
+          {name}
           <sup className={'artist-rank'}>
             <i className="fas fa-star"></i>
-            {filterArtist?.popularity}
+            {popularity}
           </sup>
         </h6>
       </div>
