@@ -6,6 +6,7 @@ interface iArtist {
   id: number;
   name: string;
   image: string;
+  popularity: string;
 }
 
 interface iProps {
@@ -13,12 +14,12 @@ interface iProps {
 }
 
 export const ItemArtist: React.FC<iProps> = ({
-  artist: { name, id, image }
+  artist: { name, id, image, popularity }
 }) => {
 
   return (
     <Link
-      to={`/${id}/albums`}
+      to={{pathname: `/${id}/albums`, state: {name, image, popularity}}}
       className={'artist-main'}
       style={{
         backgroundImage:
@@ -31,3 +32,13 @@ export const ItemArtist: React.FC<iProps> = ({
     </Link>
   );
 };
+
+
+// const newTo = (id:number, name:string, image:string, popularity:string) => {
+//     return {
+//       url: `/${id}/albums`,
+//       name,
+//       image,
+//       popularity
+//     }
+// }

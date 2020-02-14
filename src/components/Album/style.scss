@@ -1,2 +1,157 @@
 @import '../../assets/variables.scss';
 
+.album-content {
+  background-color: $gray-soft-color;
+  width: 800px;
+  margin: auto;
+}
+
+.album-heading {
+  color: $white-color;
+  text-transform: capitalize;
+  letter-spacing: 1.2px;
+  font-family: $titles-font;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.album-items {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  padding-bottom: 0.3rem;
+  margin: 0;
+  cursor: pointer;
+  border-bottom: gray solid 1px;
+  transition: background-color 0.5s;
+}
+
+.album-detail {
+  list-style: none;
+  border: none !important;
+}
+
+.album-items:hover {
+  background-color: $gray-line-color;
+}
+
+.album-img {
+  vertical-align: middle;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bar-item {
+  padding-top: 0.6rem;
+  float: left;
+  width: auto;
+  border: none !important;
+  display: block;
+  outline: 0;
+  margin-left: 0.7rem;
+}
+
+.album-text {
+  justify-content: space-between;
+  bottom: 0rem;
+  max-width: 600px;
+  padding-top: 1.6rem;
+  position: relative;
+}
+
+.album-name {
+  font-size: 0.7rem;
+  font-family: $titles-font;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  color: $white-color;
+}
+
+.album-track {
+  font-size: 0.5rem;
+  font-family: $description-font;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  color: $white-color;
+}
+
+.play-album {
+  position: relative;
+  float: left;
+  left: 38rem;
+  margin-bottom: 0.2rem;
+  color: $white-color;
+  font-size: 0.8rem;
+  bottom: 1.2rem;
+}
+
+.artist-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top, #232526, #414345);
+  position: relative;
+}
+
+.btn-back {
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  width: 7rem;
+  background-color: transparent;
+  border: 0.1rem solid $orange-color;
+  color: $white-color;
+  border-radius: 20px;
+  cursor: pointer;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.fa-angle-left{
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  transition: margin-right 0.4s;
+}
+
+.btn-back:hover .fa-angle-left {
+  margin-right: 1.5rem;
+}
+
+.artist-img {
+  margin-top: 2rem;
+  padding: 0.5rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.artist-name {
+  color: $white-color;
+  font-family: $titles-font;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  letter-spacing: 1.2px;
+}
+
+.artist-rank {
+  color: $white-color;
+  font-family: $description-font;
+  font-size: 0.6rem;
+}
+
+.fa-star {
+  color: $yellow-color;
+  font-size: 0.5rem;
+}

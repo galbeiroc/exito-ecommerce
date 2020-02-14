@@ -24,7 +24,6 @@ export const Artist: React.FC = () => {
     services
       .getAllArtists()
       .then((res: any) => {
-        console.log('res.data artists', res.data);
         setArtists(res.data);
       })
       .catch((err: any) => {
@@ -34,13 +33,12 @@ export const Artist: React.FC = () => {
 
   useEffect(() => {
     getArtist();
-    console.log('artists', artists);
   }, []);
 
   return (
     <div className={'row artist'}>
-      {artists.map(e => {
-        return <ItemArtist key={e.id} artist={e} />;
+      {artists.map(art => {
+        return <ItemArtist key={art.id} artist={art} />;
       })}
     </div>
   );
