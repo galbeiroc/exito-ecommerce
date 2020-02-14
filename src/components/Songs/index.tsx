@@ -36,6 +36,8 @@ export const Song: React.FC<iSongsProps> = ({
     services
       .getAlbumsSongs(id)
       .then((res: any) => {
+        console.log(res.data);
+
         setInfoAlbum(res.data);
       })
       .catch((err: any) => {
@@ -56,14 +58,28 @@ export const Song: React.FC<iSongsProps> = ({
     return timeValue;
   };
 
+  const playSong = (idSong: number) => {
+    console.log(idSong);
+    const mapSongs = infoAlbum.map(e => {
+      if(id) {
+        console.log('id',id);
+        e.songs.find(x => x.id=== idSong )
+      }
+    });        
+  };
+
   const mapAlbumSong = filterXAlbum.map(song =>
     song.songs.map((track, i) => {
-      const tt: number = parseInt(track.duration_ms);
+      const timeSong: number = parseInt(track.duration_ms);
       return (
-        <tr key={track.id} className={'selected-row'}>
+        <tr
+          key={track.id}
+          className={'selected-row'}
+          onClick={() => playSong(track.id)}
+        >
           <td className={'number-track'}>{i}</td>
           <td>{track.name}</td>
-          <td>{ConvertMillMin(tt)}</td>
+          <td>{ConvertMillMin(timeSong)}</td>
           <td>{artist.name}</td>
         </tr>
       );
