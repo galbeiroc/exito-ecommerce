@@ -1,5 +1,10 @@
 @import '../../assets/variables.scss';
 
+.content-art-album-song {
+  display: flex;
+  flex-direction: column;
+}
+
 .content-song {
   background-color: #a09e9e;
   width: 800px;
@@ -9,4 +14,80 @@
 .selected-row {
   color: $white-color;
   cursor: pointer;
+}
+
+td {
+  padding: 0.3rem !important;
+}
+
+.number-track {
+  text-align: center;
+}
+
+.content-art-album {
+  width: 100%;
+  border-top: 0.3rem $black-color solid;
+  margin-bottom: 0.3rem;
+  height: 13rem;
+  background: linear-gradient(to top, #232526, #414345);
+  padding: 0.5rem;
+}
+
+.content-art-song-img {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.album-song-art-img {
+  width: 10rem;
+  height: 10rem;
+}
+
+.album-art-img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.playlist {
+  font-family: $titles-font;
+  font-size: 2rem;
+  color: $white-color;
+  letter-spacing: 0.1rem;
+}
+.name-album-song-art {
+  font-family: $titles-font;
+  font-size: 0.8rem;
+  color: $white-color;
+  margin: 0.2rem;
+}
+
+.name-album-song {
+  font-family: $description-font;
+  font-size: 0.6rem;
+  color: $white-color;
+  margin: 0.2rem;
+}
+
+.btn-back-album {
+  position: absolute;
+  left: 10px;
+  top: 80px;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  width: 7rem;
+  background-color: transparent;
+  border: 0.1rem solid $orange-color;
+  color: $white-color;
+  border-radius: 20px;
+  cursor: pointer;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.btn-back-album:hover .fa-angle-left {
+  margin-right: 1.5rem;
 }

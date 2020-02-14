@@ -25,7 +25,7 @@ export const ItemAlbum: React.FC<iProps> = ({
 
   
   return (
-    <Link to={{pathname: `/${id}/songs`, state: {name, image, total_tracks, spotify_url,artist} }} className={'content-item'}>
+    <Link to={{pathname: `/${id}/songs`, state: {name, image, total_tracks, spotify_url, artist} }} className={'content-item'}>
       <li className={'album-detail'}>
         <img src={image} className={'bar-item album-img'} />
         <div className={'bar-item album-text'}>
