@@ -32,13 +32,3 @@ export const ItemArtist: React.FC<iProps> = ({
     </Link>
   );
 };
-
-
-// const newTo = (id:number, name:string, image:string, popularity:string) => {
-//     return {
-//       url: `/${id}/albums`,
-//       name,
-//       image,
-//       popularity
-//     }
-// }
