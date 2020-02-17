@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArtistServices } from '../../services/index';
 import { RouteComponentProps } from 'react-router-dom';
+import { Modal } from '../Modal/Modal';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
@@ -26,9 +27,13 @@ export const Song: React.FC<iSongsProps> = ({
     params: { id }
   }
 }) => {
+
   const infoArtistAlbum = history.location.state;
   const [infoAlbum, setInfoAlbum] = useState<iPropsSongs[]>([]);
-  const [compArtist, serCompArtist] = useState<any>(infoArtistAlbum);
+  const [compArtist, setCompArtist] = useState<any>(infoArtistAlbum);
+  const [songs, setSongs] = useState<Array<object>>([]);
+  const [moldalOpen, setModalOpen] = useState<boolean>(false)
+
   const services = new ArtistServices();
   const { name, image, total_tracks, artist } = compArtist;
 
@@ -36,8 +41,6 @@ export const Song: React.FC<iSongsProps> = ({
     services
       .getAlbumsSongs(id)
       .then((res: any) => {
-        console.log(res.data);
-
         setInfoAlbum(res.data);
       })
       .catch((err: any) => {
@@ -58,15 +61,25 @@ export const Song: React.FC<iSongsProps> = ({
     return timeValue;
   };
 
-  const playSong = (idSong: number) => {
-    console.log(idSong);
-    const mapSongs = infoAlbum.map(e => {
-      if(id) {
-        console.log('id',id);
-        e.songs.find(x => x.id=== idSong )
-      }
-    });        
+  const playSong = (idSong: number)=> {
+    const arrSong: Array<object> = [];
+
+    const mapSongs = filterXAlbum.map(song => song.songs).flat();
+    const findSong = mapSongs.filter(e => e.id === idSong);
+    const filterSong = mapSongs.filter(e => e.id !== idSong);
+    
+    for (let i = 0; i < 2; i++) {
+      arrSong[i] = filterSong[Math.floor(Math.random() * filterSong.length)];
+    }
+   
+    setSongs(arrSong.concat(findSong).reverse());
+    setModalOpen(true)
+
   };
+
+  useEffect(() => {
+    getInfoAlbumSongs();
+  }, []);
 
   const mapAlbumSong = filterXAlbum.map(song =>
     song.songs.map((track, i) => {
@@ -86,11 +99,6 @@ export const Song: React.FC<iSongsProps> = ({
     })
   );
 
-  useEffect(() => {
-    getInfoAlbumSongs();
-  }, []);
-
-  console.log(compArtist);
 
   return (
     <div className={'content-art-album-song'}>
@@ -137,6 +145,7 @@ export const Song: React.FC<iSongsProps> = ({
           <tbody>{mapAlbumSong}</tbody>
         </table>
       </div>
+      {!moldalOpen ? null : <Modal  mdlOpen={moldalOpen} songs={songs}/>}
     </div>
   );
 };
